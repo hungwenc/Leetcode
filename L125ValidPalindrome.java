@@ -11,19 +11,25 @@ For the purpose of this problem, we define empty string as valid palindrome.
 */
 public class Solution {
     public boolean isPalindrome(String s) {
-        if(s==null || s.length()) return false;
+        if(s == null || s.length()==0) return true;
         s = s.toLowerCase();
         int i = 0;
-        int j = s.length() - 1;
+        int j = s.length()-1;
         while(i<=j){
             char head = s.charAt(i);
             char tail = s.charAt(j);
-            if(head.isLetter() && tail.isLetter() && (head == tail)){
-                
-            }else{
-                return false;
+            if(Character.isLetterOrDigit(head) && Character.isLetterOrDigit(tail)){
+                if(head != tail) return false;
+                i++;
+                j--;
             }
-            
+            if(!Character.isLetterOrDigit(head)){
+                i++;
+            }
+            if(!Character.isLetterOrDigit(tail)){
+                j--;
+            }
         }
+        return true;
     }
 }
