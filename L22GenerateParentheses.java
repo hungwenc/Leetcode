@@ -9,7 +9,8 @@ For example, given n = 3, a solution set is:
   "()()()"
 ]
 */
-
+// Time:  O(4^n / n^(3/2)) ~= Catalan numbers
+//Space: O(n)
 public class Solution {
     public List<String> generateParenthesis(int n) {
         List<String> res = new LinkedList<>();
