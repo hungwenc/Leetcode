@@ -6,6 +6,7 @@ Example
 Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
 */
 //https://www.lintcode.com/en/problem/trapping-rain-water/
+//每個index 找從此index到最左  和最右  最高的  之後取其中比較小的和自己的高度相減 * 寬度1
 public class Solution {
     /**
      * @param heights: an array of integers
