@@ -8,6 +8,8 @@ For example,
   [2,1,1]
 ]
 */
+//time O(n * n!)
+//space O(n)
 public class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> outer = new ArrayList<List<Integer>>();
