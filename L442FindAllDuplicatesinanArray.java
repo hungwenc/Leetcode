@@ -13,6 +13,7 @@ Output:
 //time  O(n)
 //space O(1)
 //sol1 positive negative sign 
+// idea http://www.cnblogs.com/grandyang/p/6209746.html
 public class Solution {
     public List<Integer> findDuplicates(int[] nums) {
         int index = 0;
