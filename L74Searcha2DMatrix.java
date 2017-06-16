@@ -14,7 +14,8 @@ Given target = 3, return true.
 */
 //other related problems 
 // http://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/
-
+//time compl: O(logm + logn)	
+//space compl: O(1)
 //sol1. use Binary Search (and treat matrix as 1D array) 
 public class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
