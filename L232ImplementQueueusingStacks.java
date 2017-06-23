@@ -36,6 +36,7 @@ public class MyQueue {
             //add new element
             s1.push(x);
             //reverse it
+            // here we can't use for... s1.size(), because the size will change in each loop (because of s1.pop())
             while(!s1.isEmpty()){
                 s2.push(s1.pop());
             }
@@ -47,6 +48,7 @@ public class MyQueue {
             //add new element
             s2.push(x);
             //reverse it
+            // here we can't use for... s2.size(), because the size will change in each loop (because of s2.pop())
             while(!s2.isEmpty()){
                 s1.push(s2.pop());
             }
