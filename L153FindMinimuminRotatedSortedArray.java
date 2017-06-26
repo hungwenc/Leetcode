@@ -4,19 +4,18 @@ Suppose an array sorted in ascending order is rotated at some pivot unknown to y
 Find the minimum element.
 You may assume no duplicate exists in the array.
 */
-//Time compl : O(logN)
+// time compl O(logn)
+// space compl O(1)
+//sol1. binary search
 public class Solution {
     public int findMin(int[] nums) {
-        if(nums.length == 1) return nums[0];
         int left = 0;
         int right = nums.length - 1;
         int mid = 0;
-        
-        while(left < right){
-            if(nums[left] < nums[right]){ // no rotation
-                return nums[left];
-            }
-
+        while(left < right && nums[left] >= nums[right]){ // watch out
+            //if(nums[left] < nums[right]){    -> means no rotation
+            //     return nums[left];
+            // }
             mid = left + (right - left)/2;
             if(nums[mid] >= nums[left]){ // watch out here
                 left = mid + 1;
@@ -28,6 +27,7 @@ public class Solution {
     }
 }
 
+//sol2. call API
 // public class Solution {
 //     public int findMin(int[] nums) {
 //         if(nums.length == 1) return nums[0];
