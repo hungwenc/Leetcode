@@ -1,3 +1,56 @@
+/*344. Reverse String
+Write a function that takes a string as input and returns the string reversed.
+Example:
+Given s = "hello", return "olleh".
+*/
+public class Solution {
+    public String reverseString(String s) {
+        if(s == null || s.length() <= 1) return s;
+        char[] sarray = s.toCharArray();
+        int i = 0;
+        int j = sarray.length - 1;
+        char temp;
+        while(i<=j){
+            temp = sarray[i];
+            sarray[i] = sarray[j];
+            sarray[j] = temp;
+            i++;
+            j--;
+        }
+        return new String(sarray);
+    }
+}
+
+
+/*
+Approach: Using Java Library
+public class Solution {
+    public String reverseString(String s) {
+        return new StringBuilder(s).reverse().toString();
+    }
+}
+
+
+Approach: Using Java Library
+Java's library is probably slower that direct implementation due to extra overhead in check various edge cases such as surrogate pairs.
+public class Solution {
+    public String reverseString(String s) {
+        int length = s.length();
+        if (length <= 1) return s;
+        String leftStr = s.substring(0, length / 2);
+        String rightStr = s.substring(length / 2, length);
+        return reverseString(rightStr) + reverseString(leftStr);
+    }
+}
+Complexity Analysis
+
+Time Complexity: `O(n log(n))` (Average Case) and `O(n * log(n))` (Worst Case) where `n` is the total number character in the input string. The recurrence equation is `T(n) = 2 * T(n/2) + O(n)`. `O(n)` is due to the fact that concatenation function takes linear time. The recurrence equation can be solved to get `O(n * log(n))`.
+
+Auxiliary Space: `O(h)` space is used where `h` is the depth of recursion tree generated which is `log(n)`. Space is needed for activation stack during recursion calls.
+
+
+*/
+/*
 public class L344ReverseString {
 //	public String reverseString(String s) {
 //	  	String temp = "";
@@ -31,21 +84,3 @@ public class L344ReverseString {
     	}
     	return new String(word);
     }
-
-    public static void main(String[] args) throws Exception {
-//    	String[] input = new String[] {"a","b","c"};
-    	L344ReverseString s = new L344ReverseString();
-    	String input ="ABCDEFG";    
-    	long time1 = System.nanoTime();
-    	String ans = s.reverseString(input);
-    	long time2 = System.nanoTime();
-        long timeTaken = time2 - time1;  
-        System.out.println("Time taken " + timeTaken + " ns");  
-    	System.out.println(ans);
-    	int a = 'a'^'a';
-    	int b = a^'a';
-    	System.out.println(a);
-    	char m = (97);
-    	System.out.println(m);    
-    }
-}
