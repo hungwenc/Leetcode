@@ -12,7 +12,7 @@ The wordDict parameter had been changed to a list of strings (instead of a set o
 */
 
 // n = s.length()
-//time comp O(n^2)
+//time comp O(n^2)???? but somebody said it's not O(n^2), but O(n*wlen).
 //space comp O(n)
 //http://www.programcreek.com/2012/12/leetcode-solution-word-break/
 
