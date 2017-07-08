@@ -21,8 +21,9 @@ You may assume beginWord and endWord are non-empty and are not the same.
 UPDATE (2017/1/20):
 The wordList parameter had been changed to a list of strings (instead of a set of strings). Please reload the code definition to get the latest changes.
 */
-
-//should use BFS (for shortest path purpose)
+// Time:  O(n * d), n is length of string, d is size of wordList
+// Space: O(list size)
+// use BFS (for shortest path purpose)
 public class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> dict = new HashSet<>();
