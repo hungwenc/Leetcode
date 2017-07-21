@@ -29,23 +29,24 @@ that is, how many nodes smaller than this node
 */
 
 //sol1
-//binary search DFS
-
+//binary search, Divide and Conquer, DFS
 // https://stackoverflow.com/questions/2329171/find-kth-smallest-element-in-a-binary-search-tree-in-optimum-way
 public class Solution {
     public int kthSmallest(TreeNode root, int k) {
-        int count = countNodes(root.left);
-        if (k <= count) {
+        int leftCount = countNodes(root.left) + 1;
+        if (leftCount == k) {
+            return root.val;
+        } else if (leftCount > k) {
             return kthSmallest(root.left, k);
-        } else if (k > count + 1) {
-            return kthSmallest(root.right, k-1-count); // 1 is counted as current node
+        } else {
+            return kthSmallest(root.right, k - leftCount);
         }
-        return root.val;
     }
-    
-    public int countNodes(TreeNode n) {
-        if (n == null) return 0;
-        return 1 + countNodes(n.left) + countNodes(n.right);
+    private int countNodes(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return countNodes(root.left) + countNodes(root.right) + 1;
     }
 }
 
