@@ -27,9 +27,31 @@ sol: we can add 'rank' in TreeNode
 use it to record the number of nodes in the left tree
 that is, how many nodes smaller than this node
 */
-// https://stackoverflow.com/questions/2329171/find-kth-smallest-element-in-a-binary-search-tree-in-optimum-way
 
-//sol1. iterative
+//sol1
+//binary search DFS
+
+// https://stackoverflow.com/questions/2329171/find-kth-smallest-element-in-a-binary-search-tree-in-optimum-way
+public class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        int count = countNodes(root.left);
+        if (k <= count) {
+            return kthSmallest(root.left, k);
+        } else if (k > count + 1) {
+            return kthSmallest(root.right, k-1-count); // 1 is counted as current node
+        }
+        return root.val;
+    }
+    
+    public int countNodes(TreeNode n) {
+        if (n == null) return 0;
+        return 1 + countNodes(n.left) + countNodes(n.right);
+    }
+}
+
+
+//sol2. iterative
+/*
 public class Solution {
     public int kthSmallest(TreeNode root, int k) {
         Stack<TreeNode> stack = new Stack<>();
@@ -50,8 +72,9 @@ public class Solution {
         return cur.val;
     }
 }
+*/
 
-//sol2 recursive
+//sol3 recursive
 /*
 public class Solution {
     // global value
@@ -72,23 +95,3 @@ public class Solution {
 }
 */
 
-//sol3
-//binary search DFS
-/*
-public class Solution {
-    public int kthSmallest(TreeNode root, int k) {
-        int count = countNodes(root.left);
-        if (k <= count) {
-            return kthSmallest(root.left, k);
-        } else if (k > count + 1) {
-            return kthSmallest(root.right, k-1-count); // 1 is counted as current node
-        }
-        return root.val;
-    }
-    
-    public int countNodes(TreeNode n) {
-        if (n == null) return 0;
-        return 1 + countNodes(n.left) + countNodes(n.right);
-    }
-}
-*/
