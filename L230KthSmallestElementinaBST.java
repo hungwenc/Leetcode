@@ -3,6 +3,7 @@ Given a binary search tree, write a function kthSmallest to find the kth smalles
 Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
 Note: 
 You may assume k is always valid, 1 <= k <= BST's total elements.
+
 Follow up:
 What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? 
 How would you optimize the kthSmallest routine?
@@ -16,8 +17,17 @@ How would you optimize the kthSmallest routine?
  *     TreeNode(int x) { val = x; }
  * }
  */
-
+// Time:  O(max(h, k))
+// Space: O(h) ? O(min(h, k))	
 // we can use inorder traversal solve it
+
+/* Follow up solution:
+how to optimize to O(h)？h is tree height
+sol: we can add 'rank' in TreeNode
+use it to record the number of nodes in the left tree
+that is, how many nodes smaller than this node
+*/
+
 //sol1. iterative
 public class Solution {
     public int kthSmallest(TreeNode root, int k) {
@@ -57,6 +67,27 @@ public class Solution {
         count ++;
         if(count == k) result = root.val;
         inorder(root.right, k);       
+    }
+}
+*/
+
+//sol3
+//binary search DFS
+/*
+public class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        int count = countNodes(root.left);
+        if (k <= count) {
+            return kthSmallest(root.left, k);
+        } else if (k > count + 1) {
+            return kthSmallest(root.right, k-1-count); // 1 is counted as current node
+        }
+        return root.val;
+    }
+    
+    public int countNodes(TreeNode n) {
+        if (n == null) return 0;
+        return 1 + countNodes(n.left) + countNodes(n.right);
     }
 }
 */
