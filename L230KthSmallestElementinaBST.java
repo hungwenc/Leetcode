@@ -27,6 +27,7 @@ sol: we can add 'rank' in TreeNode
 use it to record the number of nodes in the left tree
 that is, how many nodes smaller than this node
 */
+// https://stackoverflow.com/questions/2329171/find-kth-smallest-element-in-a-binary-search-tree-in-optimum-way
 
 //sol1. iterative
 public class Solution {
