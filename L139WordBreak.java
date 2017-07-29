@@ -16,6 +16,7 @@ The wordDict parameter had been changed to a list of strings (instead of a set o
 //space comp O(n)
 //http://www.programcreek.com/2012/12/leetcode-solution-word-break/
 //問true or false, 此題是dp 題 當前狀態由之前狀態來決定 
+//dp: think about 1.state, 2.initial state, 3.transfer func, 4.return 
 public class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
         boolean[] match = new boolean[s.length() + 1];  // record past 
