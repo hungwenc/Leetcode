@@ -30,6 +30,9 @@ randomSet.insert(2);
 
 // Since 2 is the only number in the set, getRandom always return 2.
 randomSet.getRandom();
+
+// Time:  O(1)
+// Space: O(n)
 */
 public class RandomizedSet {
 	ArrayList<Integer> list; // put value 
