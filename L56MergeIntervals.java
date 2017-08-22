@@ -13,6 +13,8 @@ return [1,6],[8,10],[15,18].
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
+// Time:  O(nlogn)
+// Space: O(1)
 class Solution {
     public List<Interval> merge(List<Interval> input) {
         if(input == null || input.size() <= 1) return input;
