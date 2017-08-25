@@ -8,7 +8,7 @@ Example:
 Input: "cbbd"
 Output: "bb"
 */
-
+//http://blog.csdn.net/hopeztm/article/details/7932245
 // sol1 simple solution 直觀
 // time O(n^2)
 // space O(1)
