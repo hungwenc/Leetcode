@@ -9,6 +9,7 @@ For example:
     27 -> AA
     28 -> AB 
 */
+//用26進位的思路思考
 class Solution {
     public String convertToTitle(int n) {
         if(n <= 0) return null;
