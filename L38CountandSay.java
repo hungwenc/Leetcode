@@ -21,8 +21,8 @@ Input: 4
 Output: "1211"
 */
 //dynamic programming
-//time O(n * 2^n)
-//space O(2^n)	
+//time O(n * max String len)
+//space O(max String len)	
 class Solution {
     public String countAndSay(int n) {
         if(n <= 0) return "";
