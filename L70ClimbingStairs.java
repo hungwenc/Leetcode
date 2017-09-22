@@ -5,7 +5,8 @@ Note: Given n will be a positive integer.
 */
 
 // sol1 by Dynamic Programming, O(1) space 
-public class Solution {
+// time comp O(n) 
+// space comp O(n)public class Solution {
   public int climbStairs(int n) {
     if(n <= 1) return 1;
     int[] dp = new int[2];
@@ -23,6 +24,8 @@ public class Solution {
 }
 
 // sol2 by Dynamic Programming, need O(n) space
+// time comp O(n) 
+// space comp O(n)
 // public class Solution {
 //   public int climbStairs(int n) {
 //     if(n <= 1) return 1;
@@ -36,8 +39,9 @@ public class Solution {
 //   }
 // }
 
-
 // sol3 Recursive way (similar to fib sequence)
+// time comp O(2^n) branch^depth
+// space comp O(n)
 // public class Solution {
 // 	public int climbStairs(int n) {
 //      if(n == 0 ) return 0;
