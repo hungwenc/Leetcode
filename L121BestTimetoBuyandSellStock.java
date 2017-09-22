@@ -12,6 +12,9 @@ Input: [7, 6, 4, 3, 1]
 Output: 0
 In this case, no transaction is done, i.e. max profit = 0.
 */
+//https://segmentfault.com/a/1190000007492072
+//https://code.mforever78.com/algorithm/2016/02/24/a-series-of-dynamic-programming-problem/
+//解法較簡單 也不需要用到dp的樣子
 // Time:  O(n)
 // Space: O(1)
 public class Solution {
