@@ -21,6 +21,16 @@ For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another exa
  * }
  */
 // video https://www.youtube.com/watch?v=NBcqBddFbZw
+/*
+// 1. If the current subtree contains both p and q,
+//    return their LCA.
+// 2. If only one of them is in that subtree,
+//    return that one of them.
+// 3. If neither of them is in that subtree,
+//    return the node of that subtree.
+*/
+// Time:  O(n)
+// Space: O(h)
 public class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root == null || p == root || q == root) return root;
