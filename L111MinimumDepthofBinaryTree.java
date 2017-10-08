@@ -1,12 +1,15 @@
-import java.util.*;
-/*
- * L111. Minimum Depth of Binary Tree
- * Given a binary tree, find its minimum depth.
-The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
-*/
-
+/**L111. Minimum Depth of Binary Tree
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 //bottom up. O(n), top down solution is O(N^2)
-public class L111MinimumDepthofBinaryTree {
+//video https://www.youtube.com/watch?v=Knj-ViB96JM
+public class Solution {
     public int minDepth(TreeNode root) {
         if(root == null){
             return 0;
