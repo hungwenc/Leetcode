@@ -1,4 +1,4 @@
-/*L236. Lowest Common Ancestor of a Binary Tree
+/*經典 L236. Lowest Common Ancestor of a Binary Tree
 Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
 According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself).”
 
@@ -20,6 +20,7 @@ For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another exa
  *     TreeNode(int x) { val = x; }
  * }
  */
+// video 公 https://www.youtube.com/watch?v=WqNULaUhPCc
 // video https://www.youtube.com/watch?v=NBcqBddFbZw
 /*
 // 1. If the current subtree contains both p and q,
@@ -31,15 +32,20 @@ For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another exa
 */
 // Time:  O(n)
 // Space: O(h)
+// 自己try case!
 public class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null || p == root || q == root) return root;
+        // edge condition
+        if(root == null) return null;
+        if(p == root || q == root) return root;
+        
+        // divide
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
         
-        if(left!=null && right!=null) return root;
-        
-        if(left!=null) return left; // left!=null but right==null
+        // conquer
+        if(left!=null && right!=null) return root; // 左右都有值 parent node 就是common ancestor
+        if(left!=null) return left; // left!=null but right==null, 右邊傳上來的就是當前的root
         
         //else
         return right; // left==null but right!=null
