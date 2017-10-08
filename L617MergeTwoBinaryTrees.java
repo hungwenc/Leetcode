@@ -1,4 +1,4 @@
-/*L617. Merge Two Binary Trees
+/*
 Given two binary trees and imagine that when you put one of them to cover the other, 
 some nodes of the two trees are overlapped while the others are not.
 
@@ -38,7 +38,7 @@ public class Solution {
     if(t1 == null) return t2;
     if(t2 == null) return t1;
 
-    TreeNode t = new TreeNode(t1.val + t2.val); // overlap
+    TreeNode t = new TreeNode(t1.val + t2.val); // 在這一層要完成的事情 overlap
     t.left = mergeTrees(t1.left, t2.left);
     t.right = mergeTrees(t1.right, t2.right);
     return t;
