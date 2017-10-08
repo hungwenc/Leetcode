@@ -14,15 +14,19 @@ public class Solution {
         if(root == null){
             return 0;
         }
-        
+        //strp1
         int left_d = maxDepth(root.left); 
         if(left_d == -1) return -1;
         
+        //strp2
         int right_d = maxDepth(root.right); 
         if(right_d == -1) return -1;
         
+        //strp3
         if(Math.abs(left_d - right_d) > 1) return -1;
-        return 1 + Math.max(left_d, right_d);
+        
+        //strp4
+        return (1 + Math.max(left_d, right_d));
     }
     public boolean isBalanced(TreeNode root) {
         if (root == null) return true;
