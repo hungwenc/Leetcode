@@ -36,8 +36,6 @@ public class MinStack {
     }
     
     public void pop() {
-        System.out.println(stack.peek().equals(min_stack.peek()));
-        System.out.println(stack.peek() == min_stack.peek());
         if(stack.peek().equals(min_stack.peek())){
             min_stack.pop();
         }
