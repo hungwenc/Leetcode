@@ -13,7 +13,11 @@ return false.
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
+// Time:  O(nlogn)
+// Space: O(n)
 // Comparator https://openhome.cc/Gossip/Java/ComparableComparator.html
+// java sort for primitive : will use quicksort
+// java sort for object    : will use mergesort 
 class Solution {
     public boolean canAttendMeetings(Interval[] intervals) {
         Arrays.sort(intervals, new Comparator<Interval>(){
