@@ -33,3 +33,65 @@ public class Solution {
         return (maxDepth(root) != -1);
     }
 }
+
+/*from Lintcode
+//sol1. with ReturnType 較像工業用code
+// class ReturnType{
+//     public boolean isBalanced;
+//     public int maxDepth;
+//     // constructor
+//     public ReturnType(boolean isBalanced, int maxDepth) {
+//         this.isBalanced = isBalanced;
+//         this.maxDepth = maxDepth;
+//     }
+// }
+// public class Solution {
+//     public boolean isBalanced(TreeNode root) {
+//         return helper(root).isBalanced;
+//     }
+//     public ReturnType helper(TreeNode root) {
+//         if (root == null) {
+//             return new ReturnType(true, 0);
+//         }
+        
+//         ReturnType left = helper(root.left);
+//         ReturnType right = helper(root.right);
+        
+//         // subtree not balanced
+//         if(!left.isBalanced || !right.isBalanced) {
+//             return new ReturnType(false, -1);
+//         }
+        
+//         //root not balanced
+//         if(Math.abs(left.maxDepth - right.maxDepth) > 1) {
+//             return new ReturnType(false, -1); 
+//         }
+        
+//         return new ReturnType(true, Math.max(left.maxDepth, right.maxDepth) + 1);
+//     }
+// }
+
+
+//sol2. without ReturnType 
+public class Solution {
+    public int NOT_BALANCED = -1;
+    public boolean isBalanced(TreeNode root) {
+        return (maxDepth(root) != NOT_BALANCED);
+    }
+    private int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+        if(left == NOT_BALANCED || right == NOT_BALANCED) {
+            return NOT_BALANCED;
+        }
+        if(Math.abs(left - right) > 1) {
+            return NOT_BALANCED;
+        }
+        return Math.max(left, right) + 1;
+    }
+}
+
+*/
