@@ -1,44 +1,25 @@
-import java.util.*;
-/* L98. Validate Binary Search Tree
-Given a binary tree, determine if it is a valid binary search tree (BST).
-
-Assume a BST is defined as follows:
-
-The left subtree of a node contains only nodes with keys less than the node's key.
-The right subtree of a node contains only nodes with keys greater than the node's key.
-Both the left and right subtrees must also be binary search trees.
-Example 1:
-    2
-   / \
-  1   3
-Binary tree [2,1,3], return true.
-Example 2:
-    1
-   / \
-  2   3
-Binary tree [1,2,3], return false.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
  */
 
-// ��solution �� follow up �h�Q��inorder traversal
-public class L98ValidateBinarySearchTree {
-	/**
-	 * Definition for a binary tree node.
-	 * public class TreeNode {
-	 *     int val;
-	 *     TreeNode left;
-	 *     TreeNode right;
-	 *     TreeNode(int x) { val = x; }
-	 * }
-	 */
+
+// 透過inorder來判斷是否是valid的BST
+public class Solution {
     List<Integer> list = new LinkedList<Integer>();
-    boolean res = true;
+    boolean res = true; // global variable
     public List<Integer> inorder(TreeNode root) {
         if(root == null) return list;
         inorder(root.left);
-        if(list.size()!=0){ 
-        	// get the last element of list:    list.get(list.size() - 1) 
+        if(list.size()!=0){
             if(root.val <= list.get(list.size() - 1)) {
                 res = false;
+                return null;
             }
         }
         list.add(root.val);
@@ -51,7 +32,72 @@ public class L98ValidateBinarySearchTree {
         
     }
 }
+/* from lint code
+//sol1 traverse & inorder
+// public class Solution {
+//     boolean isValid = true;
+//     private TreeNode lastNode = null;
+//     public boolean isValidBST(TreeNode root) {
+//         inOrder(root);
+//         return isValid;
+//     }
+//     private void inOrder(TreeNode root) {
+//         if(root == null){
+//             return;
+//         }
+//         inOrder(root.left);
+//         if(lastNode != null && root.val <= lastNode.val){
+//             isValid = false;
+//         }
+//         lastNode = root;
+//         inOrder(root.right);
+//         return;
+//     }
+// }
 
+//sol2 Divide and Conquer 
+public class Solution {
+    class ResultType{
+        boolean is_bst;
+        int maxValue;
+        int minValue;
+        public ResultType(boolean is_bst, int maxValue, int minValue) {
+            this.is_bst = is_bst;
+            this.maxValue = maxValue;
+            this.minValue = minValue;
+        }
+    }
+    
+    public boolean isValidBST(TreeNode root) {
+        ResultType result = helper(root);
+        return result.is_bst;
+    }
+    private ResultType helper(TreeNode root) {
+        if (root == null) {
+            //注意這邊放的參數 是maxValue放 MIN_VALUE
+            return new ResultType(true, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        }
+        ResultType left = helper(root.left);
+        ResultType right = helper(root.right);
+        
+        //兩個子樹都必須是Binary Search Tree
+        if (left.is_bst == false || right.is_bst == false) {
+            // 因為是invalid bst 所以隨意傳入的max min值
+            return new ResultType(false, -1, -1);
+        }
+        
+        if (root.left != null && left.maxValue >= root.val ||
+            root.right != null && right.minValue <= root.val) {
+            return new ResultType(false, -1, -1);
+        }
+
+            
+        return new ResultType(true,
+                              Math.max(right.maxValue, root.val),
+                              Math.min(left.minValue, root.val));
+    }
+}
+*/
 /* 
 My simple Java solution in 3 lines
 public class Solution {
