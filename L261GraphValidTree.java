@@ -25,11 +25,10 @@ public class Solution {
         while (!queue.isEmpty()) {
             int node = queue.poll();
             for (Integer neighbor : graph.get(node)) {
-                if (set.contains(neighbor)) {
-                    continue;
+                if (!set.contains(neighbor)) {
+                    set.add(neighbor);
+                    queue.offer(neighbor);
                 }
-                set.add(neighbor);
-                queue.offer(neighbor);
             }
         }
         if (set.size() == n) {
