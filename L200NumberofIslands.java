@@ -55,6 +55,74 @@ public class Solution {
     }
 }
 
+/*
+//BFS的解法
+class Coordinate{
+    int x;
+    int y;
+    public Coordinate(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+} 
+
+public class Solution {
+    public int numIslands(boolean[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        int count = 0;
+        // flood fill 灌水法, 能用寬度搜索就不要用深度搜索
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j]) {
+                    Coordinate current = new Coordinate(i, j);
+                    bfs(grid, current);
+                    count++;
+                }
+            }            
+        }
+        return count;
+    }
+    
+    // 在BFS中 這題利用grid matrix 來替代hash table
+    private void bfs(boolean[][] grid, Coordinate current){
+        // 四連通的問題
+        int[] directionX = {-1, 0, +1, 0};
+        int[] directionY = {0, +1, 0, -1};
+        
+        Queue<Coordinate> queue = new LinkedList<>();
+        
+        queue.offer(current);
+        grid[current.x][current.y] = false;
+        
+        while (!queue.isEmpty()) {
+            Coordinate head = queue.poll();
+            for (int i = 0; i < directionX.length; i++) {
+                Coordinate neighbor = new Coordinate(
+                    head.x + directionX[i], 
+                    head.y + directionY[i]
+                );
+                if (isBound(grid, neighbor) == false) {
+                    continue;
+                }
+                if (grid[neighbor.x][neighbor.y]) { 
+                    queue.offer(neighbor);
+                    grid[neighbor.x][neighbor.y] = false;
+                }
+            }
+        }
+    }
+    
+    //處理matrix問題 記得要處理越界的case
+    private boolean isBound(boolean[][] grid, Coordinate current){
+        int row = grid.length;
+        int col = grid[0].length;
+        return current.x >= 0 && current.x < row && current.y >= 0 && current.y < col; 
+    }
+}
+
+*/
 
 /*
 public class Solution {
