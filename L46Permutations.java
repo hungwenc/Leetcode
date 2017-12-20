@@ -11,9 +11,54 @@ For example,
   [3,2,1]
 ]
 */
-//time O(n * n!)	
-//space O(n)
+public class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> results = new ArrayList<>();
+        if (nums == null) {
+            return results;
+        }
+        if (nums.length == 0) { //空排列也是種可能?
+            results.add(new ArrayList<Integer>());
+            return results;
+        }
+        List<Integer> permutation = new ArrayList<Integer>();
+        //用hashset 紀錄是不是使用過
+        Set<Integer> set = new HashSet<Integer>();
+        
+        helper(nums, permutation, set, results);
+        return results;
+    }
+    // 1. 找到所有以permutation 开头的排列
+    private void helper(int[] nums, 
+                        List<Integer> permutation, 
+                        Set<Integer> set, 
+                        List<List<Integer>> results) {
+        //3. recursion 的出口
+        if (permutation.size() == nums.length) {
+            results.add(new ArrayList<>(permutation));
+            return;
+        }
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (set.contains(nums[i])) {
+                continue;
+            }
+            
+            set.add(nums[i]);
+            permutation.add(nums[i]);
+            
+            helper(nums, permutation, set, results);
+            
+            set.remove(nums[i]);
+            permutation.remove(permutation.size() - 1);
+        }
+    }
+}
+
+
+
 // recursion. dfs.
+/*
 public class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> outer = new ArrayList<List<Integer>>();
@@ -42,7 +87,7 @@ public class Solution {
         }
     }
 }
-
+*/
 /*related problems solutions
 A general approach to backtracking questions in Java (Subsets, Permutations, Combination Sum, Palindrome Partioning)
 This structure might apply to many other backtracking questions, but here I am just going to demonstrate Subsets, Permutations, and Combination Sum.
