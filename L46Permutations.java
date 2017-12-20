@@ -11,6 +11,9 @@ For example,
   [3,2,1]
 ]
 */
+//time O(n * n!)	
+//space O(n)
+
 public class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> results = new ArrayList<>();
