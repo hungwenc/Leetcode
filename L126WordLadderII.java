@@ -29,6 +29,7 @@ The wordList parameter had been changed to a list of strings (instead of a set o
 //注意leetcode的測資和Lintcode不同 
 //Leetcode endWord 不在wordList裡面 且是用List<String> wordList
 //Lintcode 是用Set<String> dict
+//good ref: http://www.jiuzhang.com/solution/word-ladder-ii/
 public class Solution {
     public List<List<String>> findLadders(String start, String end, List<String> wordList) {
         Set<String> dict = new HashSet<>();
