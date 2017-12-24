@@ -11,7 +11,7 @@ Return a deep copy of the list.
  * };
  */
 
-//sol1 without HashMap
+//sol1 optimize space without HashMap
 // Time:  O(n)
 // Space: O(1)
 // idea:https://www.youtube.com/watch?v=-ExVoZXedo4
@@ -36,7 +36,7 @@ public class Solution {
         cur = head;
         while(cur != null){
             RandomListNode temp = cur.next;
-            if(cur.random != null){
+            if(cur.random != null){ // 題目有說 他可能指向null!! 所以要判斷 不然cur.random.next 會有問題
                 temp.random = cur.random.next;
             }
             cur = cur.next.next;
@@ -55,6 +55,49 @@ public class Solution {
         return dummy.next;
     }
 }
+/*Lintcode寫法
+//想清楚null的edge case 很常有問題就是 "null.next"
+public class Solution {
+    public RandomListNode copyRandomList(RandomListNode head) {
+        if (head == null) {
+            return null;
+        }
+        copyNext(head);
+        copyRandom(head);
+        return splitList(head);        
+    }
+    private void copyNext(RandomListNode head) {
+        while (head != null) {
+            RandomListNode newNode = new RandomListNode(head.label);
+            newNode.next = head.next;
+            head.next = newNode;
+            head = head.next.next;
+        }
+    }
+    private void copyRandom(RandomListNode head) {
+        while (head != null) {
+            // random pointer could point to any node in the list or null
+            // 如果head.random == null 之後再寫 .next會出問題
+            if (head.random != null) {
+                head.next.random = head.random.next;
+            }
+            head = head.next.next;
+        }
+    }
+    private RandomListNode splitList(RandomListNode head) {
+        RandomListNode newHead = head.next;
+        while (head != null) {
+            RandomListNode newCurt = head.next;
+            head.next = newCurt.next;
+            if (newCurt.next != null) { //記得要寫這個判斷
+                newCurt.next = newCurt.next.next;
+            }
+            head = head.next;
+        }
+        return newHead;
+    }
+}
+*/
 
 //sol2 HashMap
 // Time:  O(n)
