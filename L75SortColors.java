@@ -22,33 +22,40 @@ Could you come up with an one-pass algorithm using only constant space?
 //sort color
 // 0... 0, 1, 1, ... 1, 2, 2..
 //        ^            ^ edge
+/* 
+i 碰到 0 跟L換 -> 之後 pl++, i++
+i 碰到 1 不管 -> 之後 i++
+i 碰到 2 跟R換 -> 之後 pr++, i不能++ 因為目前換完不知道那個是什麼 要再看一眼
+i 和 R 重疊 要繼續做
+L可能指到 0 或 1
+*/
+// red 0, white 1, blue 2
+//sol1 three partition只用一次循環    較差的做法就是用兩次partition 但就是要兩個循環
 public class Solution {
     public void sortColors(int[] nums) {
-        if(nums == null || nums.length <= 1) return;
-        // index
-        int cur = 0;
-        int lo = 0;
-        int hi = nums.length - 1;
-        
-        while(cur <= hi){
-            if(nums[cur] == 1){
-              cur++;
-
-            }else if(nums[cur] == 0){
-              exch(nums, cur, lo);
-              
-              cur++;
-              lo++;
-            }else if(nums[cur] == 2){
-              exch(nums, cur, hi);
-              // wrong -> cur++;
-              hi--;
+        if (nums == null) {
+            return;
+        }
+        // use 3 pointers
+        int pl = 0; // left pointer
+        int pr = nums.length - 1; // right pointer
+        int i = 0; // i pointer
+        while (i <= pr) {
+            if (nums[i] == 0) {
+                swap(nums, i, pl);
+                pl++;
+                i++;
+            } else if (nums[i] == 1) {
+                i++;
+            } else { // nums[i] == 2
+                swap(nums, i, pr);
+                pr--;
             }
         }
     }
-    private void exch(int[] nums, int i, int j){
-        int temp = nums[j];
-        nums[j] = nums[i];
-        nums[i] = temp;
-     }
- }
+    private void swap (int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
