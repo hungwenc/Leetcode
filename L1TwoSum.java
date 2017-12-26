@@ -10,6 +10,8 @@ return [0, 1].
 */
 // Time  O(n)
 // Space  O(n)
+
+// twoSum變形: Count pairs with given sum, http://www.geeksforgeeks.org/count-pairs-with-given-sum/
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int[] result = new int[2];
@@ -114,3 +116,7 @@ public class Solution {
     }
 }
 */
+
+//sol4 sort + 2pointers: time O(nlogn) / space O(1)
+
+//sol5 binary search: time O(nlogn) / space O(1)
