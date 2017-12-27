@@ -9,11 +9,65 @@ A solution set is:
 ]
 */
 
+public class Solution {
+    public List<List<Integer>> threeSum(int[] numbers) {
+        List<List<Integer>> result= new ArrayList<>();
+        if (numbers == null || numbers.length < 3) {
+            return result;
+        }
+        Arrays.sort(numbers);
+        for (int i = 0; i < numbers.length - 3 + 1; i++) {
+            // skip duplicate triples with the same first numebr
+            if (i > 0 && numbers[i] == numbers[i - 1]) {
+                continue;
+            }
+            int j = i + 1; // left pointer
+            int k = numbers.length - 1; //right pointer
+            int target = numbers[i] * -1;
+            twoSum(numbers, j, k, target, result);
+        }
+        return result;
+    }
+    
+    // 利用 lintcode two sum - unique pairs 這題
+    private void twoSum(int[] numbers, 
+                        int j, 
+                        int k, 
+                        int target, 
+                        List<List<Integer>> result) {
+        while (j < k) {
+            int sum = numbers[j] + numbers[k];
+            if (sum == target) {
+                List<Integer> inner = new ArrayList<>();
+                inner.add(target * -1);
+                inner.add(numbers[j]);
+                inner.add(numbers[k]);
+                result.add(inner);
+                j++;
+                k--;
+                // skip duplicate pairs with the same left
+                while (j < k && numbers[j] == numbers[j - 1]) {
+                    j++;
+                }
+                // skip duplicate pairs with the same right
+                while (j < k && numbers[k] == numbers[k + 1]) {
+                    k--;
+                }
+            } else if (sum < target) {
+                j++;
+            } else {
+                k--;
+            }
+        }
+    }
+}
+
 // idea https://www.youtube.com/watch?v=gq-uWp327m8&t=358s
 // sol: use three pointers( base pointer, left pointer, right pointer)
 //time complexity O(N^2)
 //space complexity O(1)
-// * key part: avoid duplicate solution
+// key part: avoid duplicate solution
+/*
 public class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         //sort the array first
@@ -66,3 +120,4 @@ public class Solution {
         return right;
     }
 }
+*/
