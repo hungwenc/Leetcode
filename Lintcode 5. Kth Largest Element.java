@@ -18,7 +18,6 @@ class Solution {
     private int quickSelect(int[] nums, int start, int end, int k) {
         // 終止recursion的條件
         if (start == end) {
-            System.out.println("find");
             return nums[start]; // 找到了
         }
         int left = start;
