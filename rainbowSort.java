@@ -1,4 +1,5 @@
 // rainbowSort = 混合 mergeSort and quickSort
+// time complexity = nlog(k)  k 為顏色範圍 1 - k
 public class Solution {
     public void sortColors2(int[] colors, int k) {
         if (colors == null || colors.length == 0) {
