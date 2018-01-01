@@ -45,3 +45,15 @@ for (Map.Entry<String, Object> entry : map.entrySet()) {
     Object value = entry.getValue();
     // ...
 }
+
+
+// iterator
+public List<Integer> topk() {
+    Iterator it = minheap.iterator();
+    List<Integer> result = new ArrayList<Integer>();
+    while (it.hasNext()) {
+        result.add((Integer) it.next());
+    }
+    Collections.sort(result, Collections.reverseOrder());
+    return result;
+}
