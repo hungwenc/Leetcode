@@ -25,6 +25,17 @@ public static void printMap(Map mp) {
     }
 }
 
+// iterator
+public List<Integer> topk() {
+    Iterator it = minheap.iterator();
+    List<Integer> result = new ArrayList<Integer>();
+    while (it.hasNext()) {
+        result.add((Integer) it.next());
+    }
+    Collections.sort(result, Collections.reverseOrder());
+    return result;
+}
+
 
 If you're only interested in the keys, you can iterate through the keySet() of the map:
 
@@ -46,14 +57,3 @@ for (Map.Entry<String, Object> entry : map.entrySet()) {
     // ...
 }
 
-
-// iterator
-public List<Integer> topk() {
-    Iterator it = minheap.iterator();
-    List<Integer> result = new ArrayList<Integer>();
-    while (it.hasNext()) {
-        result.add((Integer) it.next());
-    }
-    Collections.sort(result, Collections.reverseOrder());
-    return result;
-}
