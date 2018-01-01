@@ -32,7 +32,7 @@ public List<Integer> topk() {
     while (it.hasNext()) {
         result.add((Integer) it.next());
     }
-    Collections.sort(result, Collections.reverseOrder()); // 從大到小排列
+    Collections.sort(result, Collections.reverseOrder()); // 從大到小排列 或用Collections.reverse(list)
     return result;
 }
 
