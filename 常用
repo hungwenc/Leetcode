@@ -1,0 +1,6 @@
+if (input == null) {
+  throw new IllegalArgumentException();
+}
+
+preorder - iterative
+inorder - iterative
